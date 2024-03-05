@@ -5,7 +5,7 @@ import struct
 import imutils
 
 client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-host_ip = '172.20.10.4'
+host_ip = '192.168.43.45'
 port = 9995
 
 client_socket.connect((host_ip, port))

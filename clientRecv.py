@@ -2,12 +2,17 @@ import socket
 import cv2
 import pickle
 import struct
+import ssl
 
-client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-host_ip = '172.20.10.4'
-port = 9996
+client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+host_ip = '192.168.1.118'
+port = 9995
 
+context = ssl.SSLContext(ssl.PROTOCOL_TLS_CLIENT)
+context.load_verify_locations('ssl/certificate.crt')
+client_socket = context.wrap_socket(client, server_hostname=host_ip)
 client_socket.connect((host_ip, port))
+
 data = b""
 payload_size = struct.calcsize("Q")
 
