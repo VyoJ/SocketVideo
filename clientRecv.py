@@ -9,7 +9,8 @@ host_ip = '192.168.1.118'
 port = 9995
 
 context = ssl.SSLContext(ssl.PROTOCOL_TLS_CLIENT)
-context.load_verify_locations('ssl/certificate.crt')
+context.load_verify_locations('domain.crt')
+context.check_hostname = False
 client_socket = context.wrap_socket(client, server_hostname=host_ip)
 client_socket.connect((host_ip, port))
 

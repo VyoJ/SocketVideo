@@ -27,13 +27,13 @@ def handle_client(client_socket):
 
 def main():
     server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    host_ip = '192.168.1.118'
+    host_ip = '10.1.20.88'
     print('HOST IP:', host_ip)
     port = 9995
     socket_address = (host_ip, port)
 
     context = ssl.SSLContext(ssl.PROTOCOL_TLS_SERVER)
-    context.load_cert_chain('ssl/certificate.crt', 'ssl/privateKey.key')
+    context.load_cert_chain('domain.crt', 'domain.key')
     server_socket = context.wrap_socket(server, server_side=True)
 
     server_socket.bind(socket_address)
